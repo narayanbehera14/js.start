@@ -201,3 +201,71 @@ let json = JSON.stringify(obj);
 console.log(json);
 
 //-------------------------------------------//
+
+// 3.6 What is a Prototype?
+
+Every JavaScript object has a hidden property called [[Prototype]] 
+(or __proto__),
+which points to another object — called its prototype.
+
+This prototype acts as a blueprint from which the object can
+ inherit properties and methods.
+
+ let person = {
+  greet: function() {
+    console.log("Hello!");
+  }
+};
+
+let student = Object.create(person);
+student.name = "Narayan";
+
+student.greet(); // Hello!
+
+
+//----------------------------------------------------//
+
+//4.1 What is a Callback?
+
+A callback is a function passed as an argument to another function.
+The main function can call it later when needed.
+
+In short: A function that is called back later.
+
+function greet(name, callback) {
+  console.log("Hello " + name);
+  callback();
+}
+
+function sayBye() {
+  console.log("Goodbye!");
+}
+
+greet("Narayan", sayBye);
+
+Why Use Callbacks?
+
+Callbacks help us:
+Run code after another code finishes.
+Handle asynchronous tasks (like fetching data, reading files, etc.)
+
+
+//-------------------------------------//
+
+
+// 4.2 Nested Callbacks (Callback Hell)
+
+When callbacks are inside callbacks, code becomes hard to read — 
+known as callback hell
+
+
+
+setTimeout(() => {
+  console.log("Step 1");
+  setTimeout(() => {
+    console.log("Step 2");
+    setTimeout(() => {
+      console.log("Step 3");
+    }, 1000);
+  }, 1000);
+}, 1000);
